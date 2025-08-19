@@ -13,7 +13,6 @@ function greet(city, country) {
 
 const person = { name: "Sneha" };
 
-// Using call
 greet.call(person, "Jaipur", "India");
 // this → person
 // Output: Hello, my name is Sneha, I live in Jaipur, India
@@ -34,7 +33,6 @@ function greet(city, country) {
 
 const person = { name: "Sneha" };
 
-// Using apply
 greet.apply(person, ["Jaipur", "India"]);
 // this → person
 // Output: Hello, my name is Sneha, I live in Jaipur, India
@@ -62,7 +60,6 @@ function greet(city, country) {
 
 const person = { name: "Sneha" };
 
-// Using bind
 const greetSneha = greet.bind(person, "Jaipur", "India");
 
 // Now we can call it later
@@ -112,9 +109,7 @@ setTimeout(user.sayHi.bind(user), 1000); // ✅ Fix with bind
 
 
 
-Great question Sneha 👍
-
-`call`, `apply`, and `bind` **are mainly about controlling the value of `this`**, but they **aren’t limited only to `this`**. They also have other use cases. Let’s break it down 👇
+other use cases of call, bind and apply
 
 ---
 
@@ -237,23 +232,6 @@ Without `bind`, `this` would refer to the button element, not the `counter` obje
 
 ---
 
-✅ **So summary:**
-
-* `call` → calls immediately, `this` + args individually.
-* `apply` → calls immediately, `this` + args as array.
-* `bind` → doesn’t call immediately, returns a new function with `this` + args bound.
-
-**They are MOSTLY for `this` handling, but also useful for:**
-
-* Borrowing methods
-* Passing arguments flexibly
-* Currying/partial functions
-* Using built-in functions like `Math.max`
-* Event handling to fix `this`
-
----
-
-👉 Do you want me to also show a **visual memory diagram** (step by step execution flow with `call`, `apply`, `bind`) so you see how they really bind `this` behind the scenes?
 
 
 
@@ -265,10 +243,6 @@ Without `bind`, `this` would refer to the button element, not the `counter` obje
 
 
 
-
-awesome—let’s walk through those three examples **step by step** and see exactly what runs and what prints.
-
----
 
 ## 4) Using `apply` with built-ins (`Math.max.apply`)
 
@@ -313,22 +287,46 @@ const double = multiply.bind(null, 2); // pre-fill a = 2
 console.log(double(5));
 ```
 
-### Flow
+---
 
-1. `multiply` multiplies its two arguments.
-2. `bind(null, 2)` creates a **new function** with:
+### 1️⃣ What does `multiply.bind(null, 2)` do?
 
-   * fixed `this` = `null` (not used by `multiply`, so irrelevant),
-   * the **first argument prefilled** as `2`.
-3. `double(5)` calls the bound function which internally calls `multiply(2, 5)`.
+* `bind` **creates a new function**.
+* It does **not call** `multiply` immediately — instead, it **returns a copy of multiply** where:
 
-### Output
+  * The value of `this` is fixed to `null` (not important here, because we don’t use `this` inside `multiply`).
+  * The first argument `a` is fixed to `2`.
 
+So now, the new function looks like this internally:
+
+```js
+function double(b) {
+  return multiply(2, b);
+}
 ```
-10
+
+---
+
+### 2️⃣ What does the variable `double` store?
+
+* `double` stores a **new function** (a "bound" version of `multiply`).
+* That function expects the remaining arguments (here, just `b`).
+
+---
+
+### 3️⃣ Why are we calling `double(5)` like a function?
+
+* Because `double` **is a function** (created by `.bind()`).
+* When we call `double(5)`, it executes:
+
+```js
+multiply(2, 5) // => 10
 ```
 
-> You can similarly make `const triple = multiply.bind(null, 3);` and call `triple(7) // 21`.
+✅ Output: `10`
+
+---
+
 
 ---
 
@@ -398,11 +396,6 @@ NaN
 
 ---
 
-### Quick recap
-
-* **`apply`** lets you pass an array of args (great with built-ins like `Math.max`).
-* **`bind`** returns a new function with `this` (and optionally some args) locked in—super useful for event handlers and timers.
-* In DOM events, without `bind`, `this` inside a **classic function** handler points to the **element**, not your data object. `bind` fixes that.
 
 
 
@@ -413,70 +406,8 @@ NaN
 
 
 
-Perfect questions Sneha 👏 Let’s carefully break this down step by step.
 
 ---
-
-### 🔹 Code Recap:
-
-```js
-function multiply(a, b) {
-  return a * b;
-}
-
-const double = multiply.bind(null, 2); // pre-fill a = 2
-console.log(double(5));
-```
-
----
-
-### 1️⃣ What does `multiply.bind(null, 2)` do?
-
-* `bind` **creates a new function**.
-* It does **not call** `multiply` immediately — instead, it **returns a copy of multiply** where:
-
-  * The value of `this` is fixed to `null` (not important here, because we don’t use `this` inside `multiply`).
-  * The first argument `a` is fixed to `2`.
-
-So now, the new function looks like this internally:
-
-```js
-function double(b) {
-  return multiply(2, b);
-}
-```
-
----
-
-### 2️⃣ What does the variable `double` store?
-
-* `double` stores a **new function** (a "bound" version of `multiply`).
-* That function expects the remaining arguments (here, just `b`).
-
-So:
-
-```js
-console.log(double); 
-// Output: ƒ bound multiply() { [native code] }
-```
-
-It’s a function!
-
----
-
-### 3️⃣ Why are we calling `double(5)` like a function?
-
-* Because `double` **is a function** (created by `.bind()`).
-* When we call `double(5)`, it executes:
-
-```js
-multiply(2, 5) // => 10
-```
-
-✅ Output: `10`
-
----
-
 ### 4️⃣ Syntax of `call`, `apply`, `bind`
 
 #### `call`
@@ -553,23 +484,6 @@ Would you like me to also show you **how call, apply, and bind behave with `this
 
 
 
-Good question Sneha 👌 Let’s carefully break it down.
-
-### Code Recap
-
-```js
-const user = {
-  name: "Sneha",
-  sayHi: function () {
-    console.log(`Hi, I'm ${this.name}`);
-  }
-};
-
-setTimeout(user.sayHi, 1000); // ❌ context lost
-setTimeout(user.sayHi.bind(user), 1000); // ✅ fixed
-```
-
----
 
 ### Step by Step Flow (first one ❌ context lost)
 
@@ -659,9 +573,6 @@ setTimeout(user.sayHi.bind(user), 1000); // ✅ fixed
    sayHi.call(user);
    ```
 
----
-
-👉 Sneha, would you like me to also show you how the same problem happens with **event listeners** or **callbacks in promises** (they also lose `this`), so you can see more real-world cases?
 
 
 
@@ -677,13 +588,6 @@ setTimeout(user.sayHi.bind(user), 1000); // ✅ fixed
 
 
 
-Excellent question 👌 this is where things get really interesting!
-
-👉 **No, the behavior of `this`, `call`, `apply`, and `bind` is **different** for arrow functions compared to normal functions.**
-
-Let me explain step by step:
-
----
 
 ### 🔹 1. **Arrow functions do not have their own `this`**
 
@@ -758,14 +662,3 @@ ArrowFn: Sneha        <-- arrow fn inherits `this` from sayHi()
 ✅ So arrow functions are often used inside callbacks like `setTimeout`, `map`, `forEach`, etc., **precisely to avoid losing `this`.**
 
 ---
-
-### ⚡ Summary:
-
-* `call`, `apply`, `bind` → work only with **normal functions**.
-* Arrow functions → **ignore them** because they always use `this` from where they were created.
-* Use **arrow functions** when you want to "fix" `this` automatically (like in event handlers or async callbacks).
-* Use **bind/call/apply** when you want to explicitly control `this`.
-
----
-
-Do you want me to also make a **comparison table (normal vs arrow) for call/apply/bind + this** so you can revise easily later?
