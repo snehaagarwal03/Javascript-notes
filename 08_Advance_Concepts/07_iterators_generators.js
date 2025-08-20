@@ -2,6 +2,7 @@
 //Generator function doesn't execute things all at a once. When you hit it , then it executes and how many times it can be called, it can remember that.
 // (*) with yield keyword is called generator
 // next() is the iterator that remembers the last reference in generator function ,keeps a track of whole things and keeps on going until it goes out of bound. It iterates through the value.
+//Iterators return an object with next() method which produces a sequence of values
 //Instead of return we use yield here
 
 function* numberGenerator() {

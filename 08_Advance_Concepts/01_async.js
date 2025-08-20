@@ -8,6 +8,8 @@
 
 // Asynchronous nature of JavaScript: It means that certain things in the code will not run in sequence. The ability to have a pause in the language and Javascript doesn't have it itself we inject it with some kind of help. Flow diagrams are drawn in notebook.
 
+//Role of event loop in async JS: To handle both sync and async tasks by managing the call stack and callback queue.
+
 function sayHello(){
     console.log("I would like to say Hello")
 }

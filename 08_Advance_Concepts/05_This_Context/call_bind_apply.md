@@ -411,69 +411,29 @@ NaN
 ### 4️⃣ Syntax of `call`, `apply`, `bind`
 
 #### `call`
-
-* Immediately invokes the function.
 * Syntax:
 
 ```js
 func.call(thisArg, arg1, arg2, ...)
 ```
 
-✅ Example:
-
-```js
-multiply.call(null, 2, 5); // 10
-```
-
 ---
 
 #### `apply`
-
-* Same as `call`, but arguments are passed as an array.
 * Syntax:
 
 ```js
 func.apply(thisArg, [arg1, arg2, ...])
 ```
-
-✅ Example:
-
-```js
-multiply.apply(null, [2, 5]); // 10
-```
-
 ---
 
 #### `bind`
-
-* Returns a **new function** with fixed `this` and/or pre-filled arguments.
-* Does not execute immediately.
 * Syntax:
 
 ```js
 let newFunc = func.bind(thisArg, arg1, arg2, ...);
 ```
-
-✅ Example:
-
-```js
-const double = multiply.bind(null, 2); 
-double(5); // 10
-```
-
 ---
-
-✅ **Quick Difference Table:**
-
-| Method  | Executes Immediately?   | Arguments     |
-| ------- | ----------------------- | ------------- |
-| `call`  | ✅ Yes                   | List of args  |
-| `apply` | ✅ Yes                   | Array of args |
-| `bind`  | ❌ No (returns function) | List of args  |
-
----
-
-Would you like me to also show you **how call, apply, and bind behave with `this` in an object method** (instead of just normal functions like `multiply`)? That way you’ll see their real power 🚀.
 
 
 

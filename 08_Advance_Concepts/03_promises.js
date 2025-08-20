@@ -44,3 +44,5 @@ Every single promise has some states associated with it:
 2. Fulfilled: The operation completed successfully.
 3. Rejected: The operation failed.
 */
+
+//Promise Chaining: A technique used to call then() multiple times in sequence to handle the results of a promise.

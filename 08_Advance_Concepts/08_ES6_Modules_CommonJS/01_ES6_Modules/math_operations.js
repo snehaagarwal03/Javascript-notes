@@ -13,3 +13,4 @@ export default function multiply(a, b) {
 }
 
 //there can only be one export default in a file, but there can be multiple named exports.
+//ES6 Modules purpose is to split the code into smaller and reusable pieces, and import/export them across different files

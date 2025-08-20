@@ -6,6 +6,7 @@ const person = {
     },
 };
 
+//Here this keyword inside the method of an object refers to the object that owns the method in which this is used
 
 person.greet(); //this will always have context of name
 

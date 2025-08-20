@@ -13,6 +13,7 @@ function fetchUserData() {
 }
 
 //async tells that a specific task needs some time and await tells that it needs to wait for the result and the processing is happening. await can only be used inside an async function.
+//await pauses the execution of a function until the promise is resolved
 //user data fetched successfully shows that only after the processing is done maybe sending data to database and not making any changes on screen be it anything then only the next line will be executed.
 async function getUserData() {
   try {
@@ -69,3 +70,5 @@ async function getBlogData(){
     }
 }
 getBlogData(); //the function must be called to see the response
+
+//Promise.all() waits for all promises in an array to be resolved or one to be rejected
