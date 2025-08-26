@@ -19,33 +19,34 @@ node filename.js
 ## Operators Precedence Table
 
 | Precedence | Operator Type                      | Operators                                | Associativity |
-| ---------- | ---------------------------------- | ---------------------------------------- | ------------- | ------------- | ------------- |
-| 20         | **Grouping**                       | `()`                                     | N/A           |
-| 19         | **Member Access**                  | `.`                                      | Left to Right |
-|            | **Computed Member**                | `[]`                                     | Left to Right |
-|            | **Function Call**                  | `()`                                     | Left to Right |
-| 18         | **new** (with args)                | `new`                                    | Right to Left |
-| 17         | **Postfix Increment**              | `expr++`                                 | N/A           |
-|            | **Postfix Decrement**              | `expr--`                                 | N/A           |
-| 16         | **Logical NOT**                    | `!`                                      | Right to Left |
-|            | **Unary Plus/Minus**               | `+`, `-`                                 | Right to Left |
-|            | **Prefix Inc/Dec**                 | `++`, `--`                               | Right to Left |
-|            | **typeof, delete, void**           | `typeof`, `delete`, `void`               | Right to Left |
-| 15         | **Exponentiation**                 | `**`                                     | Right to Left |
-| 14         | **Multiplication/Division/Modulo** | `*`, `/`, `%`                            | Left to Right |
-| 13         | **Addition/Subtraction**           | `+`, `-`                                 | Left to Right |
-| 12         | **Bitwise Shift**                  | `<<`, `>>`, `>>>`                        | Left to Right |
-| 11         | **Relational**                     | `<`, `<=`, `>`, `>=`, `in`, `instanceof` | Left to Right |
-| 10         | **Equality**                       | `==`, `!=`, `===`, `!==`                 | Left to Right |
-| 9          | **Bitwise AND**                    | `&`                                      | Left to Right |
-| 8          | **Bitwise XOR**                    | `^`                                      | Left to Right |
-| 7          | **Bitwise OR**                     | `                                        | `             | Left to Right |
-| 6          | **Logical AND**                    | `&&`                                     | Left to Right |
-| 5          | **Logical OR**                     | `                                        |               | `             | Left to Right |
-| 4          | **Nullish Coalescing**             | `??`                                     | Left to Right |
-| 3          | **Conditional (ternary)**          | `? :`                                    | Right to Left |
-| 2          | **Assignment**                     | `=`, `+=`, `-=`, `*=`, etc.              | Right to Left |
-| 1          | **Comma**                          | `,`                                      | Left to Right |
+| ---------- | ---------------------------------- | ---------------------------------------- | ------------- |
+| 20         | **Grouping**                       | `()`                                     | N/A           |            
+| 19         | **Member Access**                  | `.`                                      | Left to Right |                              
+|            | **Computed Member**                | `[]`                                     | Left to Right |                              
+|            | **Function Call**                  | `()`                                     | Left to Right |                              
+| 18         | **new** (with args)                | `new`                                    | Right to Left |                              
+| 17         | **Postfix Increment**              | `expr++`                                 | N/A           |                              
+|            | **Postfix Decrement**              | `expr--`                                 | N/A           |                              
+| 16         | **Logical NOT**                    | `!`                                      | Right to Left |                              
+|            | **Unary Plus/Minus**               | `+`, `-`                                 | Right to Left |                              
+|            | **Prefix Inc/Dec**                 | `++`, `--`                               | Right to Left |                              
+|            | **typeof, delete, void**           | `typeof`, `delete`, `void`               | Right to Left |                              
+| 15         | **Exponentiation**                 | `**`                                     | Right to Left |                              
+| 14         | **Multiplication/Division/Modulo** | `*`, `/`, `%`                            | Left to Right |                              
+| 13         | **Addition/Subtraction**           | `+`, `-`                                 | Left to Right |               
+| 12         | **Bitwise Shift**                  | `<<`, `>>`, `>>>`                        | Left to Right |               
+| 11         | **Relational**                     | `<`, `<=`, `>`, `>=`, `in`, `instanceof` | Left to Right |               
+| 10         | **Equality**                       | `==`, `!=`, `===`, `!==`                 | Left to Right |               
+| 9          | **Bitwise AND**                    | `&`                                      | Left to Right |              
+| 8          | **Bitwise XOR**                    | `^`                                      | Left to Right |               
+| 7          | **Bitwise OR**                     | `|`                                      | Left to Right |
+| 6          | **Logical AND**                    | `&&`                                     | Left to Right |               
+| 5          | **Logical OR**                     | `||`                                     | Left to Right |
+| 4          | **Nullish Coalescing**             | `??`                                     | Left to Right |              
+| 3          | **Conditional (ternary)**          | `? :`                                    | Right to Left |               
+| 2          | **Assignment**                     | `=`, `+=`, `-=`, `*=`, etc.              | Right to Left |               
+| 1          | **Comma**                          | `,`                                      | Left to Right | 
+
 
 ---
 
