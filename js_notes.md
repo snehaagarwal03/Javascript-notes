@@ -1,13 +1,30 @@
-to run a javascript file we write this in terminal:
-node filename.js
+# JavaScript Notes
 
-shortcut for console.log() in vscode is just type log and hit tab
+## Basic JavaScript Commands
 
-using semicolon at the end of the line is optional nowadays in js
+To run a javascript file we write this in terminal:
+```bash
+node fi## 2️⃣ Hoisting with `let` and `const`
 
-shift + alt + A is used to add or remove multi line comments.
+```javascript
+console.log(b); // ❌ ReferenceError
+let b = 10;
 
-Operators Precedence table 
+console.log(c); // ❌ ReferenceError
+const c = 20;
+```
+
+### Why?
+
+* `let` and `const` are **also hoisted** but placed in a **Temporal Dead Zone (TDZ)** — a phase where the variable exists but can't be used until it's declared in code.`
+
+Shortcut for `console.log()` in vscode is just type `log` and hit tab
+
+Using semicolon at the end of the line is optional nowadays in js
+
+`Shift + Alt + A` is used to add or remove multi line comments.
+
+## Operators Precedence Table 
 
 | Precedence | Operator Type                      | Operators                                | Associativity |
 | ---------- | ---------------------------------- | ---------------------------------------- | ------------- |
@@ -44,7 +61,9 @@ Operators Precedence table
 
 
 
-difference between == === and != !== and when and where we use them:
+## Comparison Operators - Difference between == === and != !==
+
+Difference between `==` `===` and `!=` `!==` and when and where we use them:
 
 | Operator | Name                | Compares     | Performs Type Conversion? | Example               |
 | -------- | ------------------- | ------------ | ------------------------- | --------------------- |
@@ -53,25 +72,27 @@ difference between == === and != !== and when and where we use them:
 | `!=`     | Not Equal to        | Value only   | ✅ Yes                    | `'5' != 5` → `false`  |
 | `!==`    | Strict Not Equal to | Value + Type | ❌ No                     | `'5' !== 5` → `true`  |
 
-== (Loose Equality)
+### `==` (Loose Equality)
 Converts both values to the same type before comparing.
 
-
+```javascript
 '10' == 10     // true
 false == 0     // true
 null == undefined  // true
-=== (Strict Equality)
+```
+
+### `===` (Strict Equality)
 No type conversion — values must be same type and value.
 
-
+```javascript
 '10' === 10    // false
 false === 0    // false
 null === undefined // false
+```
 
+---
 
-
-
-// HOISTING
+# Hoisting
 
 ## 🧠 **What is Hoisting?**
 
@@ -99,10 +120,10 @@ var a = 5;
 console.log(a); // 5
 ```
 
-Why?
+### Why?
 JavaScript actually treats it like:
 
-```js
+```javascript
 var a;        // declaration moved to top
 console.log(a); // undefined
 a = 5;         // assignment stays here
@@ -129,7 +150,7 @@ Why?
 
 ## 3️⃣ Hoisting with Functions
 
-```js
+```javascript
 sayHi(); // "Hello!"
 
 function sayHi() {
@@ -137,14 +158,14 @@ function sayHi() {
 }
 ```
 
-Why?
+### Why?
 Function **declarations** are hoisted with their entire body, so you can call them before they appear.
 
 ---
 
 ## 4️⃣ Function Expressions (with var, let, const)
 
-```js
+```javascript
 sayHello(); // ❌ TypeError: sayHello is not a function
 
 var sayHello = function() {
@@ -152,14 +173,14 @@ var sayHello = function() {
 };
 ```
 
-Here:
+### Here:
 
 * `var sayHello` is hoisted (initialized as `undefined`).
 * You try to call `undefined()` → TypeError.
 
-With `let` or `const`:
+### With `let` or `const`:
 
-```js
+```javascript
 sayHello(); // ❌ ReferenceError
 let sayHello = function() {
   console.log("Hello!");
@@ -186,12 +207,13 @@ This hits the **TDZ** again.
 
 > Hoisting means *declarations* are moved to the top of their scope during compilation, but *initializations* stay where they are.
 
+## Memory Creation Phase and Execution Phase for Hoisting
 
 **Memory Creation Phase** and **Execution Phase** for hoisting.
 
-## 🧪 Example Code
+### 🧪 Example Code
 
-```js
+```javascript
 console.log(a);
 console.log(b);
 console.log(c);
@@ -269,10 +291,7 @@ sayHello() → TypeError: undefined is not a function
 
 ---
 
-
-
-
-// SCOPE OF VARIABLES
+# Scope of Variables
 
 ## 1️⃣ What is Scope?
 
@@ -289,7 +308,7 @@ Think of scope like "the visibility range" of a variable.
 * Declared **outside** of any function or block.
 * Accessible **anywhere** in the file after declaration.
 
-```js
+```javascript
 var globalVar = "I am global";
 
 function showGlobal() {
@@ -307,7 +326,7 @@ console.log(globalVar); // ✅ Works
 * Variables declared inside a function are **only accessible within that function**.
 * Applies to `var`, `let`, and `const` (but block scope rules still apply to `let` and `const` inside sub-blocks).
 
-```js
+```javascript
 function myFunction() {
   var funcVar = "I live inside a function";
   console.log(funcVar); // ✅ Works
@@ -324,7 +343,7 @@ console.log(funcVar); // ❌ Error: not defined
 * A block = anything inside `{ }` (loops, if statements, etc.).
 * `let` and `const` are **block scoped**, `var` is **not**.
 
-```js
+```javascript
 if (true) {
   var varTest = "I ignore blocks";
   let letTest = "I am block scoped";
@@ -343,7 +362,7 @@ console.log(constTest); // ❌ Error
 * Functions can access variables from their **outer scope**.
 * This is the basis for closures.
 
-```js
+```javascript
 function outer() {
   let outerVar = "I am from outer";
 
@@ -368,9 +387,9 @@ When you try to access a variable, JS looks:
 3. Repeats until global scope
 4. If still not found → **ReferenceError**
 
-the chain only works from inside to outside not the other way
+The chain only works from inside to outside not the other way
 
-```js
+```javascript
 let globalName = "Sneha";
 
 function outer() {
@@ -399,14 +418,9 @@ outer();
 | Hoisted       | Yes, `undefined` | Yes, TDZ        |
 | Redeclaration | Allowed          | Not allowed     |
 
-
 ---
 
-
-
-//nullish coalescing opeeator
-
-Perfect 👌 let’s go step by step.
+# Nullish Coalescing Operator
 
 ### 🔹 What is the **Nullish Coalescing Operator (`??`)**?
 
@@ -418,7 +432,7 @@ The **`??`** operator returns the **right-hand value** only if the **left-hand v
 
 ### 🔹 Example 1 — With `undefined`
 
-```js
+```javascript
 let userColor = undefined;
 let defaultColor = "blue";
 
@@ -430,23 +444,9 @@ console.log(currentColor); // Output: "blue"
 
 ---
 
-### 🔹 Example 2 — With `null`
+### 🔹 Example 2 — With a real value
 
-```js
-let userColor = null;
-let defaultColor = "blue";
-
-let currentColor = userColor ?? defaultColor;
-console.log(currentColor); // Output: "blue"
-```
-
-✅ Because `userColor` is `null`, `??` also takes `"blue"`.
-
----
-
-### 🔹 Example 3 — With a real value
-
-```js
+```javascript
 let userColor = "red";
 let defaultColor = "blue";
 
@@ -485,4 +485,3 @@ console.log(currentColor2); // ""      (because "" is NOT null/undefined)
 
 ---
 
-Do you want me to also add this **with examples in Markdown format** so you can directly paste it into your notes file?

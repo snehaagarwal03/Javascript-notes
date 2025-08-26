@@ -622,3 +622,11 @@ ArrowFn: Sneha        <-- arrow fn inherits `this` from sayHi()
 ✅ So arrow functions are often used inside callbacks like `setTimeout`, `map`, `forEach`, etc., **precisely to avoid losing `this`.**
 
 ---
+
+
+
+//work left to do for this folder
+- hands on challenges in oops, js foundation, js advanced
+- call_apply_bind.md file left to edit
+- arrays me all types of properties like shift slice and object freeze
+- and iske baad bhi jo extra addition h from yt hitesh and git repo 
